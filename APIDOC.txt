@@ -87,3 +87,11 @@ attributes:[
 
     authentication:Token
 
+
+7)api for adding a work
+
+    url: http://127.0.0.1:8000/api/customers/{id}/add_work/
+
+    method:POST
+    
+    body:{title,description,amount}
