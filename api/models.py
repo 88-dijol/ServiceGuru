@@ -37,10 +37,9 @@ class Customer(models.Model):
 
     is_active=models.BooleanField(default=True)
 
-
     # custom method  ---to get count of work
-    @property
-    def work_count(self):           #self is customer Object
+    @property     # customerinte oru property aayit edukan decorator koduka
+    def work_count(self):           #self is customer Object,for pointing an instance(customer obj it can be dijol,dinoy etc for taking that we are using self)
 
         # return self.Work_set.all().count() or
         return Work.objects.filter(customer=self).count()
@@ -50,6 +49,13 @@ class Customer(models.Model):
     def work_total(self):
 
         return Work.objects.filter(customer=self).values('amount').aggregate(total=Sum('amount'))['total']
+    
+
+    # when we are taking a customer we need to return the customer work also for that we are using this method:
+    @property
+    def works(self):
+
+        return Work.objects.filter(customer=self)
 
     def __str__(self) -> str:
 
